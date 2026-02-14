@@ -1,0 +1,21 @@
+{
+  "name": "ralph-init",
+  "version": "1.0.0",
+  "description": "Scaffold a RALPH loop for autonomous AI-driven development",
+  "bin": {
+    "ralph-init": "./bin/cli.js"
+  },
+  "files": [
+    "bin/",
+    "templates/"
+  ],
+  "keywords": [
+    "claude",
+    "ai",
+    "autonomous",
+    "loop",
+    "scaffolding",
+    "cli"
+  ],
+  "license": "MIT"
+}

@@ -42,56 +42,67 @@ ralph-init/
   specs/                   YOUR requirements go here (one file per topic)
 ```
 
-## How To Use (3 Steps)
+## Three Phases, Two Prompts, One Loop
 
-### Step 1: Write Your Specs
+Think of it like building with LEGO. You have three jobs: decide what to
+build, make a plan, then build it one brick at a time. There are two
+instruction sheets (prompts) and one machine (the loop) that does the
+building over and over until it's done.
 
-Create markdown files in `specs/` describing what you want built.
-One file per topic. Keep it clear and specific.
+### Phase 1: Define Requirements
 
-Example: `specs/user-authentication.md`
+This is the "what do we want?" phase. You have a conversation with Claude
+to figure out what you're building. Together you create spec files — one
+per topic, saved in `specs/`.
 
-```markdown
-# User Authentication
+You can talk through your ideas, break them into pieces, and let Claude
+help write the specs. One topic per file. If you can't describe a spec in
+one sentence without using "and", split it into two specs.
 
-Users should be able to:
-- Sign up with email and password
-- Log in and receive a session
-- Log out
-- Reset their password via email
-```
-
-**Tip**: If you can't describe a spec in one sentence without using "and",
-split it into two specs.
-
-### Step 2: Run Planning
+### Phase 2: Plan (the loop in planning mode)
 
 ```bash
 ./loop.sh plan
 ```
 
-Claude will read your specs, look at any existing code, and create
-a prioritized task list in `IMPLEMENTATION_PLAN.md`.
+The loop runs using the **planning prompt**. Claude reads your specs,
+compares them against any existing code (gap analysis), and produces a
+prioritized task list in `IMPLEMENTATION_PLAN.md`. No code is written —
+planning mode only plans.
 
-Review the plan. If it looks wrong, just run planning again - plans are cheap.
+Review the plan. If it's wrong, just run planning again — plans are cheap
+and get refined through multiple passes.
 
-### Step 3: Run Building
+### Phase 3: Build (the loop in building mode)
 
 ```bash
 ./loop.sh build       # runs until you stop it (Ctrl+C)
 ./loop.sh build 5     # runs max 5 iterations then stops
 ```
 
-Claude will pick one task, implement it, test it, commit it,
-and then the loop restarts with a fresh context.
+The same loop now runs using the **building prompt**. Each iteration:
+
+1. **Orient** — study the requirements and existing code
+2. **Read plan** — review `IMPLEMENTATION_PLAN.md`
+3. **Select** — pick the highest-priority task
+4. **Investigate** — search relevant source files (no guessing)
+5. **Implement** — make the changes
+6. **Validate** — run tests (backpressure — must pass before moving on)
+7. **Update artifacts** — mark the task done, update `AGENTS.md`
+8. **Commit** — save changes with a descriptive message
+9. **Clear context** — wipe the slate and start fresh
+
+One task per loop. Fresh brain every time. This is what keeps Claude sharp.
 
 **Watch the first few loops.** If Claude does something weird, add a note
-to `AGENTS.md` so it learns for next time.
+to `AGENTS.md` so it learns for next time. Human guidance happens
+*outside* the loop, not within iterations.
 
 ## Key Ideas
 
-- **Specs** = what you want (you write these)
-- **Plan** = what to do (Claude generates this from specs)
+- **One loop, two modes** — the same loop runs planning or building depending on the prompt
+- **Specs** = what you want (you help create these with Claude)
+- **Plan** = what to do (Claude generates this from specs via gap analysis)
 - **AGENTS.md** = how to work in this project (starts empty, grows as Claude learns)
 - **One task per loop** = keeps Claude sharp and focused
 - **Plans are disposable** = if the plan goes wrong, just re-run planning

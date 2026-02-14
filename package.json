@@ -2,13 +2,16 @@
   "name": "ralph-init",
   "version": "1.0.0",
   "description": "Scaffold a RALPH loop for autonomous AI-driven development",
-  "bin": {
-    "ralph-init": "./bin/cli.js"
+  "author": "davea38",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davea38/ralph-init.git"
   },
-  "files": [
-    "bin/",
-    "templates/"
-  ],
+  "homepage": "https://github.com/davea38/ralph-init#readme",
+  "bugs": {
+    "url": "https://github.com/davea38/ralph-init/issues"
+  },
   "keywords": [
     "claude",
     "ai",
@@ -17,5 +20,14 @@
     "scaffolding",
     "cli"
   ],
-  "license": "MIT"
+  "engines": {
+    "node": ">=14"
+  },
+  "bin": {
+    "ralph-init": "./bin/cli.js"
+  },
+  "files": [
+    "bin/",
+    "templates/"
+  ]
 }

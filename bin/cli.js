@@ -3,6 +3,19 @@
 const fs = require("fs");
 const path = require("path");
 
+// ANSI colors
+const c = {
+  reset: "\x1b[0m",
+  bold: "\x1b[1m",
+  dim: "\x1b[2m",
+  cyan: "\x1b[36m",
+  green: "\x1b[32m",
+  yellow: "\x1b[33m",
+  magenta: "\x1b[35m",
+  red: "\x1b[31m",
+  white: "\x1b[37m",
+};
+
 const TEMPLATES_DIR = path.join(__dirname, "..", "templates");
 const TARGET_DIR = process.cwd();
 
@@ -53,35 +66,40 @@ try {
 
 // Print results
 console.log("");
-console.log("  ralph-init");
+console.log(`  ${c.bold}${c.cyan}\u{1F504} ralph-init${c.reset}`);
+console.log(`  ${c.dim}the re-regurgitated version${c.reset}`);
 console.log("");
 
 if (created.length > 0) {
-  console.log("  Created:");
+  console.log(`  ${c.green}\u{2714} Created:${c.reset}`);
   for (const file of created) {
-    console.log(`    ${file}`);
+    console.log(`    ${c.green}\u{2502}${c.reset} ${file}`);
   }
 }
 
 if (skipped.length > 0) {
   console.log("");
-  console.log("  Skipped (already exist):");
+  console.log(`  ${c.yellow}\u{25CB} Skipped (already exist):${c.reset}`);
   for (const file of skipped) {
-    console.log(`    ${file}`);
+    console.log(`    ${c.yellow}\u{2502}${c.reset} ${c.dim}${file}${c.reset}`);
   }
 }
 
 if (!inGitRepo) {
   console.log("");
-  console.log("  Warning: Not inside a git repository.");
-  console.log("  RALPH works best with git (it commits after each task).");
-  console.log("  Run: git init");
+  console.log(`  ${c.red}\u{26A0} Not inside a git repository.${c.reset}`);
+  console.log(`    RALPH commits after each task - run ${c.bold}git init${c.reset} first.`);
 }
 
 console.log("");
-console.log("  Next steps:");
-console.log("    1. Write a spec in specs/ (one markdown file per topic)");
-console.log("    2. Run ./loop.sh plan");
-console.log("    3. Review IMPLEMENTATION_PLAN.md");
-console.log("    4. Run ./loop.sh build");
+console.log(`  ${c.bold}${c.magenta}\u{1F680} Three Phases, Two Prompts, One Loop:${c.reset}`);
+console.log("");
+console.log(`    ${c.cyan}\u{1F4AC} Phase 1${c.reset} ${c.dim}\u{2500}${c.reset} Define requirements with Claude`);
+console.log(`              Chat to create spec files in ${c.bold}specs/${c.reset}`);
+console.log("");
+console.log(`    ${c.cyan}\u{1F4CB} Phase 2${c.reset} ${c.dim}\u{2500}${c.reset} Plan ${c.dim}(gap analysis \u{2192} task list)${c.reset}`);
+console.log(`              ${c.bold}./loop.sh plan${c.reset}`);
+console.log("");
+console.log(`    ${c.cyan}\u{1F528} Phase 3${c.reset} ${c.dim}\u{2500}${c.reset} Build ${c.dim}(one task per loop, fresh context)${c.reset}`);
+console.log(`              ${c.bold}./loop.sh build${c.reset}`);
 console.log("");

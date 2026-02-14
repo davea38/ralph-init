@@ -68,6 +68,7 @@ try {
 console.log("");
 console.log(`  ${c.bold}${c.cyan}\u{1F504} ralph-init${c.reset}`);
 console.log(`  ${c.dim}the re-regurgitated version${c.reset}`);
+console.log(`  ${c.dim}by${c.reset} ${c.bold}${c.magenta}github.com/davea38${c.reset}`);
 console.log("");
 
 if (created.length > 0) {

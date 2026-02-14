@@ -53,7 +53,7 @@ building over and over until it's done.
 
 This is the "what do we want?" phase. You have a conversation with Claude
 to figure out what you're building. Together you create spec files — one
-per topic, saved in `specs/`.
+per topic, saved in `specs/`. NO CODE IS TO BE WRITTEN IS THIS PHASE!
 
 You can talk through your ideas, break them into pieces, and let Claude
 help write the specs. One topic per file. If you can't describe a spec in

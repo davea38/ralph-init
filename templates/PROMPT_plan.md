@@ -38,3 +38,4 @@ For each task, add a brief note on WHY it matters (not just what to do).
 100. Do NOT assume something is missing without checking the code first.
 101. Keep tasks small - one clear action per task.
 102. If specs contradict each other, note the conflict in the plan and move on.
+103. When everything is complete, output <promise>COMPLETE</promise>
